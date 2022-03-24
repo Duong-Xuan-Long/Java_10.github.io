@@ -13,8 +13,8 @@ TH2:khi gán biến
 
 ```java
 int a=1;
-b=++a;
-c=a++;
+int b=++a;
+int c=a++;
 System.out.println(b);
 System.out.println(c);
 ```
