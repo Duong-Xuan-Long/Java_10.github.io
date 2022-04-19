@@ -2,10 +2,9 @@ package studentService;
 
 import com.company.Student;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StudentService implements StService {
 ArrayList<Student> list=new ArrayList<>();
@@ -42,6 +41,7 @@ Scanner scanner=new Scanner(System.in);
                 case "9":
                     System.out.println("you exited");
                     break;
+              
                 default:
                     System.out.println("Enter again");
 
@@ -148,48 +148,54 @@ Scanner scanner=new Scanner(System.in);
 
     @Override
     public void sortAccordingToName() {
-        Collections.sort(list, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
-        for(Student i: list){
-            System.out.println(i.toString());
-        }
+//        Collections.sort(list, new Comparator<Student>() {
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+//        for(Student i: list){
+//            System.out.println(i.toString());
+//        }
+        List<Student> newS2=list.stream().sorted(Comparator.comparing(Student::getName)).collect(Collectors.toList());
+        newS2.forEach(System.out::println);
         System.out.println("<=================================================================>");
     }
 
     @Override
     public void sortAccordingToAge() {
-        Collections.sort(list, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getAge()-o2.getAge();
-            }
-        });
-        for(Student i: list){
-            System.out.println(i.toString());
-        }
+//        Collections.sort(list, new Comparator<Student>() {
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                return o1.getAge()-o2.getAge();
+//            }
+//        });
+//        for(Student i: list){
+//            System.out.println(i.toString());
+//        }
+        List<Student> newS=  list.stream().sorted(Comparator.comparing(Student::getAge).reversed()).collect(Collectors.toList());
+        newS.forEach(System.out::println);
         System.out.println("<=================================================================>");
     }
 
     @Override
     public void sortAccordingToPoint() {
-        Collections.sort(list, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                if(o1.getPoint()<o2.getPoint())
-                    return -1;
-                if(o1.getPoint()>o2.getPoint())
-                return 1;
-
-                return 0;
-            }
-        });
-        for(Student i: list){
-            System.out.println(i.toString());
-        }
+//        Collections.sort(list, new Comparator<Student>() {
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                if(o1.getPoint()<o2.getPoint())
+//                    return -1;
+//                if(o1.getPoint()>o2.getPoint())
+//                return 1;
+//
+//                return 0;
+//            }
+//        });
+//        for(Student i: list){
+//            System.out.println(i.toString());
+//        }
+        List<Student> newS1=list.stream().sorted(Comparator.comparing(Student::getPoint)).collect(Collectors.toList());
+        newS1.forEach(System.out::println);
         System.out.println("<=================================================================>");
 
     }
@@ -206,4 +212,5 @@ Scanner scanner=new Scanner(System.in);
         System.out.println("8.Sắp xếp theo điểm");
         System.out.println("9.thoat");
     }
+
 }
