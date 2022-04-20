@@ -41,7 +41,7 @@ Scanner scanner=new Scanner(System.in);
                 case "9":
                     System.out.println("you exited");
                     break;
-              
+
                 default:
                     System.out.println("Enter again");
 
