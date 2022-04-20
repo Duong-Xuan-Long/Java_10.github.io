@@ -174,6 +174,7 @@ public class UserService implements Service{
         String e1;
         Pattern pattern1;
         Matcher matcher1;
+        boolean ee=true;
         do{
             System.out.println("Nhập email bạn muốn đổi (Email): ");
             e1=scanner.nextLine();
@@ -199,7 +200,7 @@ public class UserService implements Service{
                 System.out.println("email ko hợp lệ nhập lại !");
             }
 
-        }while((count6==false)&&(!matcher1.find()));
+        }while((count6==false)||(!matcher1.find()));
         for(User i:list) {
             if(i.getUserName().equals(usi)){
                 i.setEmail(e1);
@@ -218,11 +219,11 @@ public class UserService implements Service{
                     "đến 15 ký tự, chứa ít nhất 1 ký tự in hoa, 1 ký tự đặc biệt (. , - _ )");
             pw= scanner.nextLine();
 
-            String regexPassWord="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
+            String regexPassWord="^(?=.*[A-Z])(?=.*[\\(\\.\\,\\-\\_]).{7,15}$";
             pattern2=Pattern.compile(regexPassWord);
             matcher2=pattern2.matcher(pw);
             if(matcher2.find()){
-                System.out.println(pw+"đạt yêu cầu");
+                System.out.println(pw+" đạt yêu cầu");
             }
             else{
                 System.out.println("Mật khẩu ko đạt tiêu chuẩn nhập lại : ");
@@ -267,6 +268,7 @@ public class UserService implements Service{
         uNew.setUserName(u);
         //password
         String pw;
+        boolean p=true;
         Pattern pattern2;
         Matcher matcher2;
         do{
@@ -274,21 +276,23 @@ public class UserService implements Service{
                     "đến 15 ký tự, chứa ít nhất 1 ký tự in hoa, 1 ký tự đặc biệt (. , - _ )");
            pw= scanner.nextLine();
            uNew.setPassWord(pw);
-            String regexPassWord="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
+            String regexPassWord="^(?=.*[A-Z])(?=.*[\\(\\.\\,\\-\\_]).{7,15}$";
             pattern2=Pattern.compile(regexPassWord);
             matcher2=pattern2.matcher(pw);
             if(matcher2.find()){
-                System.out.println(pw+"đạt yêu cầu");
+                System.out.println(pw+" đạt yêu cầu");
+                p=false;
             }
             else{
                 System.out.println("Mật khẩu ko đạt tiêu chuẩn nhập lại : ");
             }
-        }while(!matcher2.find());
+        }while(p==true);
         uNew.setPassWord(pw);
                 //email
         Pattern pattern;
         Matcher matcher;
         boolean count1=false;
+        //boolean ee=true;
         String e;
         do{
             System.out.println("Nhập email bạn muốn (Email): ");
@@ -298,7 +302,7 @@ public class UserService implements Service{
             }
             for(User i:list) {
                 if(i.getEmail().equals(e)){
-                    System.out.println("Trùng tên username,yêu cầu nhập lại! ");
+                    System.out.println("Trùng tên email,yêu cầu nhập lại! ");
                 }
                 else{
                     count1=true;
@@ -307,16 +311,21 @@ public class UserService implements Service{
             String regexEmail="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
             pattern=Pattern.compile(regexEmail);
             matcher=pattern.matcher(e);
+//            if(ee==false){
+//                ee=true;
+//            }
             if(matcher.find()){
                 System.out.println("email hợp lệ");
+                //ee=false;
             }
             else{
                 System.out.println("email ko hợp lệ nhập lại !");
             }
 
-        }while((count1==false)&&(!matcher.find()));
+        }while((count1==false)||(!matcher.find()));
         uNew.setEmail(e);
         System.out.println("Đăng kí thành công !");
+        list.add(uNew);
         return uNew;
     }
 
