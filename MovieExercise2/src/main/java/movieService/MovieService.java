@@ -7,9 +7,11 @@ import main.Movie;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MovieService {
+
     Gson gson=new Gson();
         ArrayList<Movie> list=new ArrayList<>();
 
@@ -24,7 +26,14 @@ public class MovieService {
 //            for(Movie m:list){
 //                System.out.println(gson.toJson(m));
 //            }
-//            System.out.println(gson.toJson(list.get(1)));
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+
+//
+//            for(Movie m:list){
+//
+//            }
             String choice;
             do{
                 display();
@@ -34,6 +43,7 @@ public class MovieService {
                     case "1":
                         System.out.println("Danh sách các bộ phim là: ");
                         for(Movie m:list){
+                            simpleDateFormat.format(m.getRelease());
                System.out.println(gson.toJson(m));
                                    }
                         break;
