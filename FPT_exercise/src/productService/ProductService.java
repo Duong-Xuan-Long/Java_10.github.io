@@ -247,20 +247,14 @@ String choice1;
                                 listFrom2To4.add(p);
                             }
                         }
-
-
                     }
                     if(listFrom2To4.isEmpty()){
                         System.out.println("Không có sản phẩm");
                     }
                     else{
                         System.out.println("Danh sách sp có giá từ hai triệu đến bốn triệu là: ");
-                        for(Product k:listFrom2To4){
-                            System.out.println(k.toString());
-                        }
-
+                        System.out.println(listFrom2To4);
                     }
-
                     break;
                 case "3":
                     listFrom4To7.clear();
