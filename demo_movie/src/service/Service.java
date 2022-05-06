@@ -72,8 +72,8 @@ Scanner scanner=new Scanner(System.in);
         String ten= scanner.nextLine();
         boolean t=true;
         for(int i=0;i<list.size();i++){
-            for(int j=0;j<list.size();j++){
-                for(int k=j+1;k< list.size();k++){
+            for(int j=0;j<=list.size();j++){
+                for(int k=j+1;k<=list.size();k++){
                     if(list.get(i).getName().substring(j,k).equalsIgnoreCase(ten)){
                         System.out.println(list.get(i).toString());
                         t=false;
@@ -89,24 +89,17 @@ Scanner scanner=new Scanner(System.in);
     public void findType(ArrayList<Father> list) {
         System.out.println("Nhập loại phim bạn muốn tìm :");
         String ten= scanner.nextLine();
-        boolean t=true;
+
+        ArrayList<Father> ok1=new ArrayList<>();
         for(int i=0;i<list.size();i++){
-            for(int j=0;j<list.size();j++){
-                for(int k=j+1;k< list.size();k++){
-                    for(String s:list.get(i).getType()){
-                        if(s.substring(j,k).equalsIgnoreCase(ten)){
-                            System.out.println(list.get(i).toString());
-                            t=false;
-                        }
-                        if(t==false) break;
-                    }
-
-                }
-                if(t==false) break;
-            }
-
-
-        }
+            for(int l=0;l<list.get(i).getType().size();l++){
+                 for(int j=0;j<=list.get(i).getType().get(l).length();j++){
+                        for(int k=j+1;k<=list.get(i).getType().get(l).length();k++){
+                        if(list.get(i).getType().get(l).substring(j,k).equalsIgnoreCase(ten)){
+                            if(!ok1.contains(list.get(i))){
+                                ok1.add(list.get(i));
+                            }}}}}}
+        ok1.stream().forEach(i-> System.out.println(i.toString()));
     }
 
     @Override
@@ -134,43 +127,40 @@ Scanner scanner=new Scanner(System.in);
         String t1= scanner.nextLine();
         System.out.println("Nhập thể loại phim thứ hai bạn muốn tìm :");
         String t2= scanner.nextLine();
-        ArrayList<Father> nk=new ArrayList<>();
-        boolean t=true;
-        boolean m=true;
+        ArrayList<Father> nk1=new ArrayList<>();
+        ArrayList<Father> nk2=new ArrayList<>();
+
         for(int i=0;i<list.size();i++){
-            for(int j=0;j<list.size();j++){
-                for(int k=j+1;k< list.size();k++){
-                    if(list.get(i).getName().substring(j,k).equalsIgnoreCase(t1)){
-                       nk.add(list.get(i));
-                        t=false;
+            for(int l=0;l<list.get(i).getType().size();l++){
+                for(int j=0;j<=list.get(i).getType().get(l).length();j++){
+                    for(int k=j+1;k<=list.get(i).getType().get(l).length();k++){
+                        if(list.get(i).getType().get(l).substring(j,k).equalsIgnoreCase(t1)){
+                        if(!nk1.contains(list.get(i))){
+                            nk1.add(list.get(i));
+                        }
                     }
                 }
-                if(t==false) break;
             }
-
-        }
+        }}
         for(int i=0;i<list.size();i++){
-            for(int j=0;j<list.size();j++){
-                for(int k=j+1;k< list.size();k++){
-                    if(list.get(i).getName().substring(j,k).equalsIgnoreCase(t2)){
-                        nk.add(list.get(i));
-                        m=false;
-                    }
-                }
-                if(m==false) break;
-            }
+            for(int l=0;l<list.get(i).getType().size();l++){
+                for(int j=0;j<=list.get(i).getType().get(l).length();j++){
+                    for(int k=j+1;k<=list.get(i).getType().get(l).length();k++){
+                        if(list.get(i).getType().get(l).substring(j,k).equalsIgnoreCase(t2)){
+                            if(!nk2.contains(list.get(i))){
+                                nk2.add(list.get(i));
+                            }}}}}}
+        int count=0;
 
+        for(int i=0;i<nk1.size();i++){
+            for(int j=i+1;j<nk2.size();j++){
+                if(nk1.get(i).getId()==nk2.get(j).getId()){
+                    System.out.println(nk1.get(i).toString());
+                    count++;
+                }
+            }
         }
-        for(int i=0;i<nk.size();i++){
-            System.out.println(nk.get(i).toString());
-        }
-//        for(int i=0;i<nk.size();i++){
-//            for(int j=0;j<nk.size();j++){
-//                if(nk.get(i).getId()==nk.get(j).getId()){
-//                    System.out.println(nk.get(i).toString());
-//                }
-//            }
-//        }
+        if(count==0) System.out.println("Không có phim cùng hai thể loại trên");
     }
 
 
