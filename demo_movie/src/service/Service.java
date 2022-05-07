@@ -151,9 +151,15 @@ Scanner scanner=new Scanner(System.in);
                                 nk2.add(list.get(i));
                             }}}}}}
         int count=0;
+//        for(Father nk:nk1){
+//            System.out.println(nk.toString());
+//        }
+//        for(Father nk:nk2){
+//            System.out.println(nk.toString());
+//        }
 
         for(int i=0;i<nk1.size();i++){
-            for(int j=i+1;j<nk2.size();j++){
+            for(int j=i;j<nk2.size();j++){
                 if(nk1.get(i).getId()==nk2.get(j).getId()){
                     System.out.println(nk1.get(i).toString());
                     count++;
