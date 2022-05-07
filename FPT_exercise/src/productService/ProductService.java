@@ -170,20 +170,23 @@ String choice1;
         }while(!pr.equals("5"));
     }
     public void findName(ArrayList<Product> list){
+        Scanner scanner=new Scanner(System.in);
         System.out.println("nhập tên bạn muốn tìm: ");
         String ten=scanner.nextLine();
         boolean t=false;
         for(Product p:list){
+            String[] array=p.getName().split(" ");
             t=false;
-            for(int i=0;i<p.getName().length();i++){
-                for(int j=i+1;j<p.getName().length();j++){
-                    if(p.getName().substring(i,j).equalsIgnoreCase(ten)){
-                        System.out.println(p.toString()+",Có số lượng là :"+p.getQuantity());
+            for(int k=0;k<array.length;k++){
+                for(int j=1;j<=array[k].length();j++){
+                    if(array[k].substring(0,j).equalsIgnoreCase(ten)){
+                        System.out.println(p.toString());
                         t=true;
                     }
                 }
-                if(t==true){break;}
+                if(t){break;}
             }
+
         }
     }
     public void findBrand(ArrayList<Product> list){
