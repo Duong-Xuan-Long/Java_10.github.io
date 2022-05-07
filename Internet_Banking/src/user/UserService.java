@@ -106,17 +106,17 @@ ArrayList<UserHistory> list1=new ArrayList<>();
                     list1.add(new UserHistory(u, LocalDate.now(),d,stk1,number));
                     break;
                 case "3":
-                        for(UserHistory uk:list1){
-                            if(uk.getU()!=null){
+                            if(!list1.isEmpty()){
+                                for(UserHistory uk:list1){
                                 if(uk.getU().getUserName().equals(u.getUserName())){
                                     System.out.println(uk.toString());
                                 }
-                            }
+                            }}
                             else{
                                 System.out.println("Lịch sử trống ");
                             }
 
-                        }
+
                     break;
                 case "4":
                     System.out.println("thoát!");break;
